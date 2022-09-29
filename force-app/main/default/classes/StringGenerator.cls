@@ -9,29 +9,29 @@
 
 public with sharing class StringGenerator {
 
-    private List<String> myList = new List<String>();
+    private List<String> stringList = new List<String>();
 
-    public StringGenerator( List<String> myListByUser )
+    public StringGenerator( List<String> stringListGivenByUser )
     {
-        myList = myListByUser;
+        stringList = stringListGivenByUser;
     }
     
     public List<String> returnRandomString()
     {
-        List<Integer> randomIndexList = new List<integer>();
+        List<Integer> randomIndexList = new List<Integer>();
         
         List<String> randomStringList = new List<String>();
         
-        Integer randomIndex;
-        
-        while( randomIndexList.Size() < myList.Size() )
+        while( randomIndexList.Size() < stringList.Size() )
         {
-            randomIndex = integer.valueof((Math.random() * myList.Size() ));
+            Integer randomIndex;
+
+            randomIndex = Integer.valueof((Math.random() * stringList.Size() ));
             
             if( !( randomIndexList.contains(randomIndex) ) )
             {
                 randomIndexList.add( randomIndex );
-                randomStringList.add( myList[randomIndex] );
+                randomStringList.add( stringList[randomIndex] );
             }
         }
         return randomStringList;
