@@ -1,10 +1,10 @@
 public with sharing class StringGenerator {
 
-    private List<String> my_list = new List<String>();
+    private List<String> myList = new List<String>();
 
-    public StringGenerator( List<String> my_list_by_user )
+    public StringGenerator( List<String> myListByUser )
     {
-        my_list = my_list_by_user;
+        myList = myListByUser;
     }
     
     public List<String> returnRandomString()
@@ -15,14 +15,14 @@ public with sharing class StringGenerator {
         
         Integer randomIndex;
         
-        while( randomIndexList.Size() < my_list.Size() )
+        while( randomIndexList.Size() < myList.Size() )
         {
-            randomIndex = integer.valueof((Math.random() * my_list.Size() ));
+            randomIndex = integer.valueof((Math.random() * myList.Size() ));
             
             if( !( randomIndexList.contains(randomIndex) ) )
             {
                 randomIndexList.add( randomIndex );
-                randomStringList.add( my_list[randomIndex] );
+                randomStringList.add( myList[randomIndex] );
             }
         }
         return randomStringList;
