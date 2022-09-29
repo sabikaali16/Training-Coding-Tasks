@@ -30,9 +30,9 @@ public with sharing class StringGenerator {
         {
             Integer randomIndex;
 
-            randomIndex = Integer.valueof((Math.random() * stringList.size() ));
+            randomIndex = Integer.valueof( ( Math.random() * stringList.size() ) );
             
-            if( !( randomIndexList.contains(randomIndex) ) )
+            if( !( randomIndexList.contains( randomIndex ) ) )
             {
                 randomIndexList.add( randomIndex );
                 randomStringList.add( stringList[randomIndex] );
