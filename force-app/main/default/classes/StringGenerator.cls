@@ -22,11 +22,11 @@ public with sharing class StringGenerator {
         
         List<String> randomStringList = new List<String>();
         
-        while( randomIndexList.Size() < stringList.Size() )
+        while( randomIndexList.size() < stringList.size() )
         {
             Integer randomIndex;
 
-            randomIndex = Integer.valueof((Math.random() * stringList.Size() ));
+            randomIndex = Integer.valueof((Math.random() * stringList.size() ));
             
             if( !( randomIndexList.contains(randomIndex) ) )
             {
