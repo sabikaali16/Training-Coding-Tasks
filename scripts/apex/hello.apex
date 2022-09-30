@@ -5,6 +5,8 @@
 // You can also execute the entire file by running the command:
 //     SFDX: Execute Anonymous Apex with Editor Contents
 
-string tempvar = 'Enter_your_name_here';
-System.debug('Hello World!');
-System.debug('My name is ' + tempvar);
+StringGenerator obj1 = new StringGenerator( new List<String>{'aa','bb','cc','dd'} );
+
+system.debug( obj1.randomString() );
+
+system.debug( obj1.uniquelyRandomString() );

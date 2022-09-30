@@ -20,7 +20,27 @@ public with sharing class StringGenerator {
         stringList = stringListByUser;
     }
     
-    public List<String> returnRandomString()
+    public List<String> randomString()
+    {
+        List<Integer> randomIndexList = new List<Integer>();
+        
+        List<String> randomStringList = new List<String>();
+        
+        while( randomIndexList.size() < stringList.size() )
+        {
+            Integer randomIndex;
+
+            randomIndex = Integer.valueof( ( Math.random() * stringList.size() ) );
+        
+            randomIndexList.add( randomIndex );
+
+            randomStringList.add( stringList[randomIndex] );
+            
+        }
+        return randomStringList;
+    }
+
+    public List<String> uniquelyRandomString()
     {
         List<Integer> randomIndexList = new List<Integer>();
         
