@@ -4,53 +4,57 @@
 
 //2) a uniquely random string (one string should not repeat until the cycle is complete). 
 
-
 //Unique randomness means that once you serve a string, that string should not again be served until a all strings have been requested.  
 
-//Throwing a dice is example of completely random. 
+public with sharing class StringGenerator 
+{
+    public static List<Integer> listOfServedIndexes = new List<Integer>();
 
-//Distributing cards is example of unique random i.e. once a card is served, it doesn't come again until full cycle. 
-
-public with sharing class StringGenerator {
-
-    public static List<String> randomString( List<String> stringList )
+    public static String randomString( List<String> stringList )
     {
-        List<Integer> randomIndexList = new List<Integer>();
+        Contract.requires( stringList != null, 'randomString called with null stringList' );
+
+        Integer randomIndex;
         
-        List<String> randomStringList = new List<String>();
-        
-        while( randomIndexList.size() < stringList.size() )
+        if( stringList.size() != 0 )
         {
-            Integer randomIndex;
-
             randomIndex = Integer.valueof( ( Math.random() * stringList.size() ) );
-        
-            randomIndexList.add( randomIndex );
 
-            randomStringList.add( stringList[randomIndex] );
-            
+            return stringList[randomIndex];
         }
-        return randomStringList;
+        else
+        {
+            return '';
+        }
     }
 
-    public static List<String> uniquelyRandomString( List<String> stringList )
+    public static String uniquelyRandomString( List<String> stringList )
     {
-        List<Integer> randomIndexList = new List<Integer>();
-        
-        List<String> randomStringList = new List<String>();
-        
-        while( randomIndexList.size() < stringList.size() )
-        {
-            Integer randomIndex;
+        Contract.requires( stringList != null, 'randomString called with null stringList' );
 
+        Integer randomIndex;
+
+        if( stringList.size() != 0 )
+        {
             randomIndex = Integer.valueof( ( Math.random() * stringList.size() ) );
-            
-            if( !( randomIndexList.contains( randomIndex ) ) )
+
+            if( listOfServedIndexes.size() == stringList.size() ) //clear the list once all values have been served to restart
             {
-                randomIndexList.add( randomIndex );
-                randomStringList.add( stringList[randomIndex] );
+                listOfServedIndexes = new list<Integer>();
             }
+
+            while( ( listOfServedIndexes.contains( randomIndex ) ) ) //while this condition is true, keep generating random
+            {
+                randomIndex = Integer.valueof( ( Math.random() * stringList.size() ) );
+            }
+
+            listOfServedIndexes.add( randomIndex );
+        
+            return stringList[randomIndex];
         }
-        return randomStringList;
+        else
+        {
+            return '';
+        }
     }
 }
