@@ -5,8 +5,6 @@
 // You can also execute the entire file by running the command:
 //     SFDX: Execute Anonymous Apex with Editor Contents
 
-StringGenerator obj1 = new StringGenerator( new List<String>{'aa','bb','cc','dd'} );
+system.debug( StringGenerator.randomString( new List<String>{'aa','bb','cc','dd'} ) );
 
-system.debug( obj1.randomString() );
-
-system.debug( obj1.uniquelyRandomString() );
+system.debug( StringGenerator.uniquelyRandomString( new List<String>{'aa','bb','cc','dd'} ) );

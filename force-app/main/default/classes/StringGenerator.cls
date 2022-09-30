@@ -13,14 +13,7 @@
 
 public with sharing class StringGenerator {
 
-    private List<String> stringList = new List<String>();
-
-    public StringGenerator( List<String> stringListByUser )
-    {
-        stringList = stringListByUser;
-    }
-    
-    public List<String> randomString()
+    public static List<String> randomString( List<String> stringList )
     {
         List<Integer> randomIndexList = new List<Integer>();
         
@@ -40,7 +33,7 @@ public with sharing class StringGenerator {
         return randomStringList;
     }
 
-    public List<String> uniquelyRandomString()
+    public static List<String> uniquelyRandomString( List<String> stringList )
     {
         List<Integer> randomIndexList = new List<Integer>();
         
