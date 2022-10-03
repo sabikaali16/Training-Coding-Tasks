@@ -21,6 +21,7 @@ public with sharing class StringGeneratorTest// ClassNameTest
     @isTest static void randomString_whenStringListIsEmpty_returnsEmptyList() //NOPMD - unit test naming conventiopn followed 
     {
         List<String> inputList = new List<String>(); 
+
         String outputString;
 
         Test.startTest();
@@ -33,6 +34,7 @@ public with sharing class StringGeneratorTest// ClassNameTest
     @isTest static void randomString_whenGivenStringListWithValues_returnsRandomStringFromGivenStringList() //NOPMD - unit test naming convention followed 
     {
         List<String> inputList = new List<String>{ 'Value1', 'Value2' }; 
+
         String outputString;
 
         Test.startTest();
@@ -63,6 +65,7 @@ public with sharing class StringGeneratorTest// ClassNameTest
     @isTest static void uniquelyRandomString_whenStringListIsEmpty_returnsEmptyList() //NOPMD - unit test naming convention followed
     {
         List<String> inputList = new List<String>(); 
+
         String outputString;
 
         Test.startTest();
@@ -75,6 +78,7 @@ public with sharing class StringGeneratorTest// ClassNameTest
     @isTest static void uniquelyRandomString_whenGivenStringListWithValues_returnsRandomStringFromGivenStringList() //NOPMD - unit test naming convention followed 
     {
         List<String> inputList = new List<String>{ 'Value1', 'Value2' }; 
+
         String outputString;
 
         Test.startTest();
@@ -82,5 +86,27 @@ public with sharing class StringGeneratorTest// ClassNameTest
         Test.stopTest();
 
         System.assert( inputList.contains( outputString ), ' uniquelyRandomString - when passed a stringList, returns a value from the given stringList');
+    }
+
+    @isTest static void uniquelyRandomString_whenAllStringsFromStringListAreServed_emptiesServedListToRestart() // NOPMD - unit test naming convention followed
+    {
+        List<String> inputList = new List<String>{ 'Value1', 'Value2' };
+
+        String outputString1,
+
+               outputString2,
+
+               outputString3;
+        
+        Test.startTest();
+            outputString1 = StringGenerator.uniquelyRandomString( inputList );
+
+            outputString2 = StringGenerator.uniquelyRandomString( inputList );
+            
+            outputString3 = StringGenerator.uniquelyRandomString( inputList );
+        Test.stopTest();
+
+        System.assert( ( inputList.contains( outputString1 ) ) && ( inputList.contains( outputString2 ) ) && ( inputList.contains( outputString3 ) ) , ' uniquelyRandomString - when all strings are served, restarts from beginning');
+
     }
 }
