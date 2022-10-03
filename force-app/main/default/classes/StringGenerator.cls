@@ -8,7 +8,7 @@
 
 public with sharing class StringGenerator 
 {
-    public static List<Integer> listOfServedIndexes = new List<Integer>();
+    private static List<Integer> listOfServedIndexes = new List<Integer>();
 
     public static String randomString( List<String> stringList )
     {
@@ -32,10 +32,10 @@ public with sharing class StringGenerator
     {
         Contract.requires( stringList != null, 'randomString called with null stringList' );
 
-        Integer randomIndex;
-
         if( stringList.size() != 0 )
         {
+            Integer randomIndex;
+
             randomIndex = Integer.valueof( ( Math.random() * stringList.size() ) );
 
             if( listOfServedIndexes.size() == stringList.size() ) //clear the list once all values have been served to restart

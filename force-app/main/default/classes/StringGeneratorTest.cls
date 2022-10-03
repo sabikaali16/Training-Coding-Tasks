@@ -1,5 +1,5 @@
 @isTest
-public with sharing class StringGeneratorTest// ClassNameTest
+public with sharing class StringGeneratorTest
 { 
     @isTest static void randomString_whenStringListIsNull_throwsException() //NOPMD - unit test naming convention followed 
     {
