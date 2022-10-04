@@ -1,7 +1,9 @@
-public with sharing class SelectOptionSorter {
-    
+public with sharing class SelectOptionSorter 
+{
     public static List<SelectOption> sortSelectOptionList( List<SelectOption> selectOptionList )
     {
+        Contract.requires( selectOptionList != null, 'sortSelectOptionList called with null selectOptionList' );
+
         Map<String, String> optionMap = new Map<String, String>(); 
 
         for( SelectOption so : selectOptionList )  
