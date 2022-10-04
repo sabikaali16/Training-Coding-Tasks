@@ -101,6 +101,48 @@ public with sharing class SelectOptionSorterTest
 
         System.assertEquals ( options2, options1, 'sortSelectOptionList - when passed a selectOptionList with alpha-numeric labels, gives precedence to numbers over alphabets when sorting in ascending order' );
     }
+
+    @isTest
+    public static void sortSelectOptionList_whenPassedDuplicateLabels_doesNotSkipDuplicateLabelsWhileSorting() //NOPMD - unit test naming convention followed
+    {
+        List<SelectOption> options1 = new List<SelectOption>(); 
+
+        List<SelectOption> options2 = new List<SelectOption>(); 
+
+        List<SelectOption> options3 = new List<SelectOption>();
+
+        options1.add( new SelectOption( '1', 'America') );  
+
+        options1.add( new SelectOption( '2', 'Mexico' ) ); 
+
+        options1.add( new SelectOption( '2', 'America' ) );
+
+        options1.add( new SelectOption( '4', 'America' ) );
+
+
+        options2.add( new SelectOption( '1', 'America' ) );
+
+        options2.add( new SelectOption( '2', 'America' ) );
+
+        options2.add( new SelectOption( '4', 'America' ) );
+        
+        options2.add( new SelectOption( '2', 'Mexico' ) ); 
+
+        
+        options3.add( new SelectOption( '1', 'America' ) );
+
+        options3.add( new SelectOption( '4', 'America' ) );
+
+        options3.add( new SelectOption( '2', 'America' ) );
+        
+        options3.add( new SelectOption( '2', 'Mexico' ) );
+
+        Test.startTest();
+        SelectOptionSorter.sortSelectOptionList( options1 );
+        Test.stopTest();
+
+        System.assert( options1.equals( options2 ) || options1.equals( options3 ), 'sortSelectOptionList - when passed a selectOptionList with duplicates labels, does not skip duplicates when sorting' );
+    }
 }
 
 
