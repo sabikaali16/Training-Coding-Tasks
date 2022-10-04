@@ -1,19 +1,19 @@
 public with sharing class SelectOptionSorter 
 {
-    public static List<SelectOption> sortSelectOptionList( List<SelectOption> selectOptionList )
+    public static void sortSelectOptionList( List<SelectOption> selectOptionList )
     {
         Contract.requires( selectOptionList != null, 'sortSelectOptionList called with null selectOptionList' );
 
-        Map<String, String> optionMap = new Map<String, String>(); 
+        Map<String, String> optionListMap = new Map<String, String>(); 
 
         for( SelectOption so : selectOptionList )  
         {
-            optionMap.put( so.getLabel(), so.getValue() );
+            optionListMap.put( so.getLabel(), so.getValue() );
         }
 
         List<String> sortedLabels = new List<String>(); // list that will contain selectOptionList's labels in sorted form
 
-        sortedLabels.addAll( optionMap.keySet() ); 
+        sortedLabels.addAll( optionListMap.keySet() ); 
 
         sortedLabels.sort();
 
@@ -21,9 +21,8 @@ public with sharing class SelectOptionSorter
 
         for( String key : sortedLabels )
         {
-            selectOptionList.add( new SelectOption( optionMap.get( key ), key ) );
+            selectOptionList.add( new SelectOption( optionListMap.get( key ), key ) );
         }
-         
-        return selectOptionList;
+
     } 
 }
