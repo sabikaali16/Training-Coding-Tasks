@@ -143,6 +143,25 @@ public with sharing class SelectOptionSorterTest
 
         System.assert( options1.equals( options2 ) || options1.equals( options3 ), 'sortSelectOptionList - when passed a selectOptionList with duplicates labels, does not skip duplicates when sorting' );
     }
+
+    @isTest
+    public static void removeTemporaySubstring_whenSelectOptionListIsNull_throwsException() //NOPMD - unit test naming convention followed
+    {
+        Exception expectedError;
+
+        Test.startTest();
+            try 
+            {
+                SelectOptionSorter.removeTemporaySubstring( null );    
+            } 
+            catch ( Contract.RequiresException error ) 
+            {
+                expectedError = error;
+            }
+        Test.stopTest();
+
+        System.assertNotEquals ( null, expectedError, 'removeTemporaySubstring - when passed a null selectOptionList, throws a Contract.Requires Exception' );
+    }
 }
 
 

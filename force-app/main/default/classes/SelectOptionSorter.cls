@@ -41,6 +41,8 @@ public with sharing class SelectOptionSorter
 
     public static void removeTemporaySubstring( List<SelectOption> selectOptionList )
     {
+        Contract.requires( selectOptionList != null, 'sortSelectOptionList called with null selectOptionList' );
+        
         for( Integer i = 0; i < selectOptionList.size(); i++ )
         {
             String label = selectOptionList[i].getLabel();
