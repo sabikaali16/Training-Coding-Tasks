@@ -1,13 +1,7 @@
-List<SelectOption> options = new List<SelectOption>(); 
+String str1 = 'evrbp';
 
-options.add( new SelectOption( 'A', 'United States' ) );  
+String str2 = 'eerhpp';  //2 replacements and 1 insert needed, total operations = 3
 
-options.add( new SelectOption( 'C', 'Canada' ) ); 
+Integer d = EditDistanceCalculator.calculateEditDistance( str1, str2, str1.length(), str2.length() );
 
-options.add( new SelectOption( 'A', 'Mexico' ) );
-
-System.debug( 'Before sorting: ' + options );
-
-SelectOptionSorter.sortSelectOptionList( options ); 
-
-System.debug( 'After sorting: ' + options );
+System.debug( 'Number of operations needed: '+d );
