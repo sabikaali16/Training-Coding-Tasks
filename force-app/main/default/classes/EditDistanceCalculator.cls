@@ -1,8 +1,16 @@
 public with sharing class EditDistanceCalculator 
 {
-    public static Integer calculateEditDistance( String str1, String str2, Integer m, Integer n ) //NOPMD -  Have to use long parameter here
+    @TestVisible
+    private static Integer calculateEditDistance( String str1, String str2, Integer m, Integer n ) //NOPMD -  Have to use long parameter here
     {
-		
+		Contract.requires( ( str1 != null ), 'calculateEditDistance called with null string 1' );
+
+        Contract.requires( ( str2 != null ), 'calculateEditDistance called with null string 2' );
+
+        Contract.requires( ( m != null ), 'calculateEditDistance called with null length of string 1' );
+
+        Contract.requires( ( n!= null ), 'calculateEditDistance called with null length of string 2' );
+
         if ( m == 0 )  // if str1 is empty - we will have to insert all values to str2 i.e insert operations = str2.length()
         {
            return n; 
@@ -22,5 +30,16 @@ public with sharing class EditDistanceCalculator
                                    calculateEditDistance( str1, str2, m - 1, n ) ), // Remove
                                    calculateEditDistance( str1, str2, m - 1, n - 1 ) // Replace
                                  ) + 1;
+    }
+    
+    public static Integer getMinEditDistance( String str1, String str2 ) //this method is introduced to avoid wrong length entries
+    {
+        Contract.requires( ( str1 != null ), 'getMinEditDistance called with null string 1' );
+
+        Contract.requires( ( str2 != null), 'getMinEditDistance called with null string 2' );
+
+        Integer minEditDistance = EditDistanceCalculator.calculateEditDistance( str1, str2, str1.length(), str2.length() );
+
+        return minEditDistance;
     }
 }

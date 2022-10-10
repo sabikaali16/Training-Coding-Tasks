@@ -1,7 +1,7 @@
-String str1 = 'evrbp';
+String str1 = 'cut';
 
-String str2 = 'eerhpp';  //2 replacements and 1 insert needed, total operations = 3
+String str2 = 'mutter';  //1 replacements and 3 insertions needed, total operations = 4
 
-Integer d = EditDistanceCalculator.calculateEditDistance( str1, str2, str1.length(), str2.length() );
+Integer d = EditDistanceCalculator.getMinEditDistance( str1, str2 );
 
 System.debug( 'Number of operations needed: '+d );
