@@ -26,10 +26,17 @@ public with sharing class EditDistanceCalculator
            return calculateEditDistance( str1, str2, m - 1, n - 1 );  // no change to edit distance: edit distance = previous
         }
 
-        return Math.min( Math.min( calculateEditDistance( str1, str2, m, n - 1 ), // Insert
-                                   calculateEditDistance( str1, str2, m - 1, n ) ), // Remove
-                                   calculateEditDistance( str1, str2, m - 1, n - 1 ) // Replace
+        //the take the minimum value from these three indexes and add one i.e : minimum operations needed so far + 1 (plus one represents need for another operation detected on this step hence incrementing the editDistance)
+
+        //these indexes reflect x,y coordinates of levenshtein distance table/graph 
+
+        //moving from current x,y position
+
+        return Math.min( Math.min( calculateEditDistance( str1, str2, m, n - 1 ),   // Insert i.e value at x, y-1 represents an Insert operation
+                                   calculateEditDistance( str1, str2, m - 1, n ) ), // Remove i.e x-1, y represents an Remove operation
+                                   calculateEditDistance( str1, str2, m - 1, n - 1 ) // Replace i.e x-1, y-1 represents an Replace operation
                                  ) + 1;
+        
     }
     
     public static Integer getMinEditDistance( String str1, String str2 ) //this method is introduced to avoid wrong length entries
@@ -38,8 +45,6 @@ public with sharing class EditDistanceCalculator
 
         Contract.requires( ( str2 != null), 'getMinEditDistance called with null string 2' );
 
-        Integer minEditDistance = EditDistanceCalculator.calculateEditDistance( str1, str2, str1.length(), str2.length() );
-
-        return minEditDistance;
+        return EditDistanceCalculator.calculateEditDistance( str1, str2, str1.length(), str2.length() );
     }
 }
